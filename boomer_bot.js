@@ -178,7 +178,18 @@ async function monitorMarkets() {
     const markets = await fetchMarkets();
 
     if (firstRun) {
-        markets.forEach(m => seenMarkets.add(m.id));
+        markets.forEach(m => {
+            seenMarkets.add(m.id);
+
+            // Fix: Alert if market is very fresh (< 2 mins old) even on restart
+            const createdAt = new Date(m.createdAt);
+            const ageInMinutes = (Date.now() - createdAt.getTime()) / 60000;
+
+            if (ageInMinutes < 2) {
+                console.log(`🚀 Found fresh market on startup: ${m.question} (${ageInMinutes.toFixed(1)}m old)`);
+                sendAlert(m);
+            }
+        });
         firstRun = false;
         console.log(`✅ Initialized. Tracking ${seenMarkets.size} existing markets.`);
         return;
