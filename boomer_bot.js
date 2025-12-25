@@ -197,7 +197,7 @@ async function monitorMarkets() {
 async function sendAlert(market) {
     const question = market.question || 'Unknown Market';
     const slug = market.slug || '';
-    const url = slug ? `https://polymarket.com/event/${slug}?via=boomer` : 'https://polymarket.com?via=boomer';
+    const url = slug ? `https://polymarket.com/event/${slug}` : 'https://polymarket.com';
     const category = detectCategory(market);
 
     const categoryEmoji = {
