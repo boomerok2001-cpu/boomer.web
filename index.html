@@ -48,27 +48,26 @@
             background: radial-gradient(circle at 50% 0%, #1e293b 0%, #0f172a 70%);
         }
 
-        .hero-icon {
-            font-size: 80px;
-            color: var(--primary);
+        .hero-logo {
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
             margin-bottom: 30px;
-            animation: pulse 3s infinite;
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+            animation: float 6s ease-in-out infinite;
         }
 
-        @keyframes pulse {
+        @keyframes float {
             0% {
-                transform: scale(1);
-                opacity: 0.8;
+                transform: translateY(0px);
             }
 
             50% {
-                transform: scale(1.05);
-                opacity: 1;
+                transform: translateY(-10px);
             }
 
             100% {
-                transform: scale(1);
-                opacity: 0.8;
+                transform: translateY(0px);
             }
         }
 
@@ -283,7 +282,7 @@
     <!-- Hero -->
     <section class="hero">
         <div>
-            <i class="ri-robot-2-line hero-icon"></i>
+            <img src="logo.jpg" alt="Ok Boomer Bot Logo" class="hero-logo">
             <h1>Ok Boomer Bot</h1>
             <p class="tagline">The professional's choice for real-time Polymarket listing alerts.</p>
             <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
@@ -382,8 +381,9 @@
         </div>
         <p style="margin-bottom: 20px;">&copy; 2025 Ok Boomer Bot. Built for everyone.</p>
         <p style="opacity: 0.5; font-size: 0.85rem; max-width: 600px; margin: 0 auto;">
-            Disclaimer: This service is independent and not affiliated with Polymarket.
-            Markets involve risk. Always do your own research.
+            Disclaimer: This service provides independent market information for educational and informational purposes
+            only. Trading prediction markets involves substantial risk and may not be suitable for all investors. Past
+            performance is not indicative of future results.
         </p>
     </footer>
 
