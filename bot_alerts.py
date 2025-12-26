@@ -69,17 +69,13 @@ class NewMarketBot:
     async def send_alert(self, context: ContextTypes.DEFAULT_TYPE, market):
         """Send formatted alert to all users"""
         question = market.get('question', 'Unknown Market')
-        slug = market.get('slug', '')
-        # Handle cases where slug might be missing or ID used
-        url = f"https://polymarket.com/event/{slug}" if slug else "https://polymarket.com"
         
         # Try to parse creation time for "Just now" effect
         created_at = market.get('createdAt')
         
         msg = f"🆕 **JUST LISTED**\n"
         msg += f"━━━━━━━━━━━━━━\n"
-        msg += f"📊 **{question}**\n\n"
-        msg += f"🔗 [Trade Now]({url})"
+        msg += f"📊 **{question}**"
 
         # Send to all users who started the bot
         # Note: In a real prod bot we'd use a database. 
