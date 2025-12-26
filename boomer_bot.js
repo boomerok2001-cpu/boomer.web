@@ -143,7 +143,7 @@ bot.on('callback_query', (query) => {
 function detectCategory(market) {
     const text = (market.question + ' ' + (market.group || '') + ' ' + (market.tags || [])).toLowerCase();
 
-    if (text.includes('bitcoin') || text.includes('crypto') || text.includes('eth') || text.includes('solana') || text.includes('coin') || text.includes('token')) return CATEGORIES.CRYPTO;
+    if (text.includes('bitcoin') || text.includes('crypto') || text.includes('eth') || text.includes('solana') || text.includes('coin') || text.includes('token') || text.includes('xrp') || text.includes('doge') || text.includes('nft') || text.includes('defi') || text.includes('airdrop') || text.includes('pepe') || text.includes('shib') || text.includes('bnb') || text.includes('cardano')) return CATEGORIES.CRYPTO;
     if (text.includes('election') || text.includes('trump') || text.includes('biden') || text.includes('senate') || text.includes('politics') || text.includes('vote')) return CATEGORIES.POLITICS;
     if (text.includes('nfl') || text.includes('nba') || text.includes('football') || text.includes('soccer') || text.includes('sport') || text.includes('f1') || text.includes('ufc')) return CATEGORIES.SPORTS;
     if (text.includes('stock') || text.includes('fed') || text.includes('rate') || text.includes('recession') || text.includes('economy') || text.includes('business') || text.includes('price')) return CATEGORIES.BUSINESS;
@@ -207,8 +207,7 @@ async function monitorMarkets() {
 // Alert Function
 async function sendAlert(market) {
     const question = market.question || 'Unknown Market';
-    const slug = market.slug || '';
-    const url = slug ? `https://polymarket.com/event/${slug}?via=boomer` : 'https://polymarket.com?via=boomer';
+
     const category = detectCategory(market);
 
     const categoryEmoji = {
@@ -224,8 +223,7 @@ async function sendAlert(market) {
 
     const msg = `🆕 **JUST LISTED** ${categoryEmoji}\n` +
         `━━━━━━━━━━━━━━\n` +
-        `📊 **${question}**\n\n` +
-        `🔗 [View on Polymarket](${url})`;
+        `📊 **${question}**`;
 
     // Broadcast to relevant subscribers
     for (const [chatId, prefs] of userPrefs.entries()) {
